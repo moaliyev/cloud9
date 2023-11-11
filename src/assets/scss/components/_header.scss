@@ -76,6 +76,9 @@
               font-weight: 600;
               text-transform: uppercase;
             }
+            &:first-child {
+              padding-inline: 22px;
+            }
             &:hover {
               .dropDown {
                 visibility: visible;

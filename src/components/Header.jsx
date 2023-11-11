@@ -8,35 +8,40 @@ import { FaSearch } from "react-icons/fa";
 // REACT-ROUTER
 import { Link } from "react-router-dom";
 
-// REACT HOOKS
-import { useState } from "react";
-
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { changeIsNavActive } from "../redux/slices/mobileSlice";
 
+// TRANSLATION
+import { useTranslation } from "react-i18next";
+
 const Header = () => {
+  const { t, i18n } = useTranslation();
+
   const { isNavActive } = useSelector(state => state.mobile);
 
   const dispatch = useDispatch();
 
   return (
     <header className="header">
-      <p className="info">
-        Receive an exclusive 2023 LCS Championship poster with every 2023 Legacy
-        Wristband purchase!
-      </p>
+      <p className="info">{t("header.title")}</p>
       <div className="container">
         <div className="row">
           <div className="topSide">
             {/* MOBILE MENU */}
-            <div className="mobileMenu" onClick={dispatch(changeIsNavActive())}>
+            <div
+              className="mobileMenu"
+              onClick={() => dispatch(changeIsNavActive())}>
               <FaBars />
             </div>
             {/* MOBILE MENU */}
             <div className="lang">
-              <select name="lang" id="lang">
-                <option value="">Language</option>
+              <select
+                name="lang"
+                id="lang"
+                value={i18n.language}
+                onChange={e => i18n.changeLanguage(e.target.value)}>
+                <option value="">{t("header.language")}</option>
                 <option value="en">EN</option>
                 <option value="az">AZ</option>
                 <option value="tr">TR</option>
@@ -57,11 +62,11 @@ const Header = () => {
               </div>
             </div>
           </div>
-          <nav className={`navBar${isNavActive ? " active" : ""}`}>
-            <FaX onClick={dispatch(changeIsNavActive())} />
+          <nav className={isNavActive ? "navBar active" : "navBar"}>
+            <FaX onClick={() => dispatch(changeIsNavActive())} />
             <ul className="navList">
               <li className="navItem">
-                <Link to="/">Apparel</Link>
+                <Link to="/">{t("header.navbar.apparel")}</Link>
                 <ul className="dropDown">
                   <li className="dropDownItem">
                     <Link>New Arrivals</Link>
@@ -87,22 +92,22 @@ const Header = () => {
                 </ul>
               </li>
               <li className="navItem">
-                <Link to="/">Worlds 2023</Link>
+                <Link to="/">{t("header.navbar.worlds-2023")}</Link>
               </li>
               <li className="navItem">
-                <Link to="/">Summer 2023</Link>
+                <Link to="/">{t("header.navbar.summer-2023")}</Link>
               </li>
               <li className="navItem">
-                <Link to="/">Pro Kit</Link>
+                <Link to="/">{t("header.navbar.pro-kit")}</Link>
               </li>
               <li className="navItem">
-                <Link to="/">Collaborations</Link>
+                <Link to="/">{t("header.navbar.collaborations")}</Link>
               </li>
               <li className="navItem">
-                <Link to="/">Collections</Link>
+                <Link to="/">{t("header.navbar.collections")}</Link>
               </li>
               <li className="navItem">
-                <Link to="/">London Spitfire</Link>
+                <Link to="/">{t("header.navbar.london-spitfire")}</Link>
               </li>
             </ul>
           </nav>
