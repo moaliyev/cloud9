@@ -2,7 +2,7 @@
   height: 100%;
   .info {
     text-align: center;
-    padding: 13px 0;
+    padding: 13px 5px;
     font-size: 13px;
     background-color: #2fabe2;
     color: #fff;
@@ -37,6 +37,7 @@
       }
       .navBar {
         width: 100%;
+        z-index: 999;
         svg {
           display: none;
         }
@@ -57,15 +58,50 @@
               left: 0;
               width: max-content;
               padding: 25px 20px;
-              background-color: yellow;
+              background-color: #fff;
               display: flex;
               flex-direction: column;
               gap: 10px;
               .dropDownItem {
+                position: relative;
                 a {
                   color: #000;
                   font-size: 14px;
                   text-transform: capitalize;
+                  transition: all 0.3s ease;
+                  svg {
+                    display: inline-block;
+                    vertical-align: middle;
+                    padding-left: 7px;
+                    transition: all 0.3s ease;
+                  }
+                  &:hover {
+                    color: #29abe2;
+                    svg {
+                      color: #29abe2;
+                      transform: translateX(9%);
+                    }
+                  }
+                }
+                .insideDropDown {
+                  position: absolute;
+                  left: 100%;
+                  top: -50%;
+                  width: max-content;
+                  padding: 15px 20px;
+                  background-color: #fff;
+                  transition: all 0.3s ease;
+                  visibility: hidden;
+                  opacity: 0;
+                  display: flex;
+                  flex-direction: column;
+                  gap: 10px;
+                }
+                &:hover {
+                  .insideDropDown {
+                    visibility: visible;
+                    opacity: 1;
+                  }
                 }
               }
             }
@@ -75,6 +111,13 @@
               color: #29abe2;
               font-weight: 600;
               text-transform: uppercase;
+              svg {
+                margin: 0;
+                color: #000;
+                float: right;
+                font-size: 20px;
+                padding-top: 4px;
+              }
             }
             &:first-child {
               padding-inline: 22px;
@@ -83,6 +126,9 @@
               .dropDown {
                 visibility: visible;
                 opacity: 1;
+              }
+              &.longer::after {
+                width: 121%;
               }
               &::after {
                 width: 100%;
@@ -100,6 +146,9 @@
               display: block;
             }
           }
+        }
+        .subLinks {
+          display: none;
         }
       }
     }
@@ -130,18 +179,38 @@
           height: 100vh;
           width: 300px;
           padding: 30px 15px;
-          &.active {
-            left: 0;
-            svg {
-              display: block;
-              font-size: 18px;
-              color: #29abe2;
-              margin-bottom: 30px;
-              cursor: pointer;
+          .navList {
+            .navItem {
+              .dropDown {
+                display: none;
+              }
             }
           }
+          .subLinks {
+            margin-top: 40px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 15px;
+            .subLinkItem {
+              a {
+                color: #29abe2;
+                line-height: 1.5;
+              }
+            }
+          }
+          svg {
+            display: block;
+            font-size: 18px;
+            color: #29abe2;
+            margin-bottom: 30px;
+            cursor: pointer;
+          }
+          &.active {
+            left: 0;
+          }
           .navList {
-            height: 55%;
             width: 100%;
             flex-direction: column;
             min-width: 0;
@@ -151,6 +220,12 @@
               border-bottom: 1px solid rgba(72, 72, 72, 0.2);
               a {
                 width: 100%;
+              }
+              &:first-child {
+                padding: 25px 0;
+              }
+              &::after {
+                display: none;
               }
             }
           }

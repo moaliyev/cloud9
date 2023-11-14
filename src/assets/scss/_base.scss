@@ -20,3 +20,32 @@
   height: 100%;
   display: flex;
 }
+
+@media (max-width: 1156px) {
+  .primaryContainer {
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba(0, 0, 0, 0);
+      z-index: -1;
+      transition: all 0.3s ease;
+    }
+    &.darkFilter {
+      &::after {
+        z-index: 1;
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.3);
+      }
+    }
+  }
+}

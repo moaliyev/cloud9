@@ -2,7 +2,14 @@
 import Logo from "../assets/images/logo.avif";
 
 // ICONS
-import { FaUser, FaBagShopping, FaBars, FaX } from "react-icons/fa6";
+import {
+  FaUser,
+  FaBagShopping,
+  FaBars,
+  FaX,
+  FaAngleRight,
+  FaPlus,
+} from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
 
 // REACT-ROUTER
@@ -65,14 +72,36 @@ const Header = () => {
           <nav className={isNavActive ? "navBar active" : "navBar"}>
             <FaX onClick={() => dispatch(changeIsNavActive())} />
             <ul className="navList">
-              <li className="navItem">
-                <Link to="/">{t("header.navbar.apparel")}</Link>
+              <li className="navItem longer">
+                <Link to="/">
+                  {t("header.navbar.apparel")} <FaPlus />
+                </Link>
                 <ul className="dropDown">
                   <li className="dropDownItem">
                     <Link>New Arrivals</Link>
                   </li>
                   <li className="dropDownItem">
-                    <Link>All Teamwear</Link>
+                    <Link>
+                      All Teamwear
+                      <FaAngleRight />
+                    </Link>
+                    <ul className="insideDropDown">
+                      <li className="insideDropDownItem">
+                        <Link>2023 Pro Kit</Link>
+                      </li>
+                      <li className="insideDropDownItem">
+                        <Link>Jerseys</Link>
+                      </li>
+                      <li className="insideDropDownItem">
+                        <Link>Jackets</Link>
+                      </li>
+                      <li className="insideDropDownItem">
+                        <Link>Bottoms</Link>
+                      </li>
+                      <li className="insideDropDownItem">
+                        <Link>Footwear</Link>
+                      </li>
+                    </ul>
                   </li>
                   <li className="dropDownItem">
                     <Link>All Tops</Link>
@@ -100,8 +129,13 @@ const Header = () => {
               <li className="navItem">
                 <Link to="/">{t("header.navbar.pro-kit")}</Link>
               </li>
-              <li className="navItem">
+              <li className="navItem longer">
                 <Link to="/">{t("header.navbar.collaborations")}</Link>
+                <ul className="dropDown">
+                  <li className="dropDownItem">
+                    <Link>Cloud9 X PacSun</Link>
+                  </li>
+                </ul>
               </li>
               <li className="navItem">
                 <Link to="/">{t("header.navbar.collections")}</Link>
@@ -109,6 +143,17 @@ const Header = () => {
               <li className="navItem">
                 <Link to="/">{t("header.navbar.london-spitfire")}</Link>
               </li>
+              <div className="subLinks">
+                <li className="subLinkItem">
+                  <Link>New Arrivals</Link>
+                </li>
+                <li className="subLinkItem">
+                  <Link>All Products</Link>
+                </li>
+                <li className="subLinkItem">
+                  <Link>Account</Link>
+                </li>
+              </div>
             </ul>
           </nav>
         </div>
