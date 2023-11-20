@@ -90,6 +90,7 @@
                   top: -50%;
                   width: max-content;
                   padding: 15px 20px;
+                  margin: 15px 20px;
                   background-color: #fff;
                   transition: all 0.3s ease;
                   visibility: hidden;
@@ -102,6 +103,7 @@
                   .insideDropDown {
                     visibility: visible;
                     opacity: 1;
+                    border: 1px solid #e1e1e1;
                   }
                 }
               }
@@ -259,6 +261,7 @@
                     .insideDropDown {
                       visibility: hidden;
                       opacity: 0;
+                      border: none;
                     }
                   }
                   a,
@@ -295,6 +298,8 @@
                     left: 0;
                     visibility: visible;
                     opacity: 1;
+                    margin: 0;
+                    border: none;
                   }
                   &.active {
                     height: 240px;
