@@ -7,42 +7,192 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 
+// HERO IMAGES
 import HeroOne from "../assets/images/hero-1.webp";
 import HeroTwo from "../assets/images/hero-2.webp";
 import HeroThree from "../assets/images/hero-3.webp";
 import HeroFour from "../assets/images/hero-4.webp";
 import HeroFive from "../assets/images/hero-5.webp";
 
+// FEATURED IMAGE
+import FeaturedImage from "../assets/images/Blank_Front_800x.webp";
+
+// COMPONENTS
+import Products from "../components/Products";
+
+// ICONS
+import { FaPlus, FaMinus } from "react-icons/fa6";
+
+// REACT-ROUTER
+import { Link } from "react-router-dom";
+
+// REACT HOOKS
+import { useState } from "react";
+
 const Home = () => {
+  const [size, setSize] = useState("XS");
+  const [sizes, setSizes] = useState(["XS", "S", "M", "L"]);
+  const [isSizesModalActive, setIsSizesModalActive] = useState(false);
+  const [isCustomNameActive, setIsCustomNameActive] = useState(false);
+  const [productCount, setProductCount] = useState(1);
+
+  const handleOnClick = e => {
+    setSize(e.target.innerHTML);
+  };
   return (
-    <section className="hero">
-      <Swiper
-        modules={[EffectFade, Pagination, Navigation, Autoplay]}
-        effect="fade"
-        navigation
-        pagination={{ clickable: true }}
-        slidesPerView={1}>
-        <SwiperSlide>
-          <img src={HeroOne} alt="hero" />
-          <p className="sliderText">
-            <span>Cloud9 </span>
-            <span>Legacy Wristband</span>
-          </p>
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={HeroTwo} alt="hero" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={HeroThree} alt="hero" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={HeroFour} alt="hero" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src={HeroFive} alt="hero" />
-        </SwiperSlide>
-      </Swiper>
-    </section>
+    <>
+      <section className="hero">
+        <Swiper
+          modules={[EffectFade, Pagination, Navigation, Autoplay]}
+          effect="fade"
+          navigation
+          pagination={{ clickable: true }}
+          slidesPerView={1}>
+          <SwiperSlide>
+            <img src={HeroOne} alt="hero" />
+            <p className="sliderText">
+              <span>Cloud9 </span>
+              <span>Legacy Wristband</span>
+            </p>
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={HeroTwo} alt="hero" />
+            <p className="sliderText">
+              <span>Cloud9</span>
+              <span>Summer Jersey</span>
+            </p>
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={HeroThree} alt="hero" />
+            <p className="sliderText">
+              <span>2023</span>
+              <span>Worlds Collection</span>
+            </p>
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={HeroFour} alt="hero" />
+            <p className="sliderText">
+              <span>Cloud9 2023</span>
+              <span>Legacy Jersey</span>
+            </p>
+          </SwiperSlide>
+          <SwiperSlide>
+            <img src={HeroFive} alt="hero" />
+            <p className="sliderText">
+              <span>Cloud9</span>
+              <span>Core Collection</span>
+            </p>
+          </SwiperSlide>
+        </Swiper>
+      </section>
+      <section className="products">
+        <div className="container">
+          <div className="row">
+            <h3 className="title">2023 pro kit</h3>
+            <Products />
+          </div>
+        </div>
+      </section>
+      <section className="featured">
+        <div className="container">
+          <div className="row">
+            <h2 className="title">FEATURED PRODUCT</h2>
+            <div className="card">
+              <div className="cardImage">
+                <Link to="/">
+                  <img src={FeaturedImage} alt="jersey" />
+                </Link>
+              </div>
+              <div className="cardContent">
+                <div className="cardInfo">
+                  <Link>
+                    2023 Cloud9 Official Summer Jersey - CSGO & SSBM Edition
+                  </Link>
+                  <span className="cardPrice">$ 69</span>
+                </div>
+                <div className="cardForm">
+                  <form className="form">
+                    <div
+                      className="sizeControl"
+                      onClick={() =>
+                        setIsSizesModalActive(!isSizesModalActive)
+                      }>
+                      <p htmlFor="size">
+                        Size: <span className="sizeInputValue">{size}</span>
+                      </p>
+                      <ul
+                        className={`selectOption${
+                          isSizesModalActive ? " active" : ""
+                        }`}>
+                        {sizes.map((item, index) => (
+                          <li
+                            key={index}
+                            onClick={handleOnClick}
+                            className={`${item === size && "active"}`}>
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="quantityControl">
+                      <span
+                        className="decrement"
+                        onClick={() =>
+                          setProductCount(
+                            productCount - 1 < 1 ? 1 : productCount - 1
+                          )
+                        }>
+                        <FaMinus />
+                      </span>
+                      <input
+                        type="number"
+                        min={1}
+                        readOnly
+                        name="quantity"
+                        value={productCount}
+                        id="quantity"
+                      />
+                      <span
+                        className="increment"
+                        onClick={() => setProductCount(productCount + 1)}>
+                        <FaPlus />
+                      </span>
+                    </div>
+                    <div className="customNameControl">
+                      <div className="customName">
+                        <p className={`${isCustomNameActive ? "active" : ""}`}>
+                          <span
+                            className="checkBox"
+                            onClick={() =>
+                              setIsCustomNameActive(!isCustomNameActive)
+                            }></span>
+                          <span className="content">
+                            Add Custom Name (ALL CAPS) ($ 10.00)
+                          </span>
+                        </p>
+                        <p>
+                          Choose the custom name on the back. Nonrefundable.
+                        </p>
+                      </div>
+                    </div>
+                    {isCustomNameActive && (
+                      <div className="customNameInput">
+                        <input type="text" name="customName" id="customName" />
+                        <p className="gamertagInfo">
+                          Enter Gamertag. Max 16 Chars, ALL CAPS
+                        </p>
+                        <p>Total Extras: $ 10.00</p>
+                      </div>
+                    )}
+                    <button type="submit">ADD TO CART</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 };
 

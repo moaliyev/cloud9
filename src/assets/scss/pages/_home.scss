@@ -1,3 +1,7 @@
+// MIXINS
+@import "../mixins";
+
+// START HERO
 .hero {
   width: 100%;
   height: 85vh;
@@ -5,43 +9,411 @@
     width: 100%;
     height: 100%;
     position: relative;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .sliderText {
-      position: absolute;
-      display: flex;
-      flex-direction: column;
-      top: 60%;
-      left: 5%;
-      font-size: 60px;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: #fff;
-      z-index: 99;
-      line-height: 1;
-      span:first-of-type {
-        color: #29abe2;
-        text-shadow: 0 0 8px rgba(0, 73, 129, 0.7);
-      }
-      span:nth-of-type(2) {
-        position: relative;
-        text-shadow: 0 0 8px rgba(0, 73, 129, 0.7);
-        z-index: 1;
-        width: min-content;
+    .swiper-wrapper {
+      .swiper-slide {
         &::after {
           content: "";
           position: absolute;
+          display: inline-block;
+          top: 0;
           bottom: 0;
-          left: -2%;
-          width: 105%;
-          height: 25%;
-          background-color: #29abe2;
-          z-index: -1;
+          left: -75%;
+          right: 24%;
+          transform: skew(-30deg);
+          background-color: #fff;
+          opacity: 0.1;
+          z-index: 1;
+        }
+        &::before {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background-image: linear-gradient(
+            to top,
+            rgba(4, 4, 4, 0.65),
+            rgba(54, 54, 54, 0.2)
+          );
+          left: 0;
+          top: 0;
+          z-index: 2;
+        }
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .sliderText {
+          position: absolute;
+          z-index: 50;
+          display: flex;
+          flex-direction: column;
+          top: 60%;
+          left: 5%;
+          font-size: 60px;
+          font-weight: 700;
+          text-transform: uppercase;
+          color: #fff;
+          z-index: 99;
+          line-height: 1;
+          span:first-of-type {
+            color: #29abe2;
+            text-shadow: 0 0 8px rgba(0, 73, 129, 0.7);
+            z-index: 50;
+          }
+          span:nth-of-type(2) {
+            position: relative;
+            text-shadow: 0 0 8px rgba(0, 73, 129, 0.7);
+            z-index: 50;
+            width: min-content;
+            &::after {
+              content: "";
+              position: absolute;
+              bottom: 0;
+              left: -2%;
+              width: 105%;
+              height: 25%;
+              background-color: #29abe2;
+              z-index: -1;
+            }
+          }
         }
       }
     }
   }
 }
+
+@media (max-width: 1156px) {
+  .hero {
+    height: 86.5vh;
+  }
+}
+
+@media (max-width: 1007px) {
+  .hero {
+    .swiper {
+      .swiper-wrapper {
+        .swiper-slide {
+          &::after {
+            right: 33%;
+          }
+          .sliderText {
+            font-size: 36px;
+          }
+        }
+      }
+    }
+  }
+}
+// END HERO
+
+// START PRODUCTS
+
+.products {
+  height: 100%;
+  width: 100%;
+  padding: 120px 0;
+  .container {
+    .row {
+      flex-direction: column;
+      align-items: center;
+      .title {
+        @include title();
+      }
+      .cardBox {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 25px;
+        .card {
+          flex: 0 0 20%;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          .cardImg {
+            max-height: 200px;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: contain;
+            }
+          }
+          .cardInfo {
+            width: 100%;
+            height: 100%;
+            line-height: 1.65;
+            font-size: 14px;
+            letter-spacing: 1.05px;
+            .cardPrice {
+              color: #1d76bb;
+              font-weight: 600;
+              font-size: 16px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .products {
+    .container {
+      .row {
+        .cardBox {
+          .card {
+            flex: 0 0 45%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 472px) {
+  .products {
+    .container {
+      .row {
+        .cardBox {
+          .card {
+            flex: 0 0 100%;
+          }
+        }
+      }
+    }
+  }
+}
+
+// END PRODUCTS
+
+// START FEATURED
+
+.featured {
+  padding: 60px 0;
+  border-top: 1px solid #e1e1e1;
+  .container {
+    .row {
+      flex-direction: column;
+      align-items: center;
+      .title {
+        @include title();
+      }
+      .card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 880px;
+        height: 100%;
+        .cardImage {
+          flex: 0 0 45%;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+        .cardContent {
+          height: 100%;
+          flex: 0 0 45%;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          .cardInfo {
+            padding-bottom: 30px;
+            border-bottom: 1px solid #e1e1e1;
+            a {
+              @include title();
+              display: inline-block;
+              font-size: 28px;
+              line-height: 1.6;
+              margin-bottom: 0;
+            }
+            .cardPrice {
+              font-size: 28px;
+              font-weight: 700;
+              color: #2a2a2a;
+            }
+          }
+          .cardForm {
+            margin-top: 24px;
+            .form {
+              width: 100%;
+              height: 100%;
+              .sizeControl {
+                width: 100%;
+                color: #29abe2;
+                font-weight: 600;
+                position: relative;
+                cursor: pointer;
+                border-radius: 2px;
+                user-select: none;
+                font-size: 18px;
+                padding: 10px 28px 10px 14px;
+                border: 1px solid #29abe2;
+                box-shadow: 0 2px 4px #e1e1e1;
+                margin-bottom: 24px;
+                position: relative;
+                .selectOption {
+                  position: absolute;
+                  top: -150%;
+                  box-shadow: 0 -2px 10px #36363633;
+                  transition: all 0.2s ease-in-out;
+                  left: -100%;
+                  background-color: #fff;
+                  padding: 18px 0;
+                  min-width: 375px;
+                  visibility: hidden;
+                  opacity: 0;
+                  &.active {
+                    visibility: visible;
+                    opacity: 1;
+                  }
+                  li {
+                    // padding: 0 50px;
+                    padding: 12px 20px;
+                    font-size: 18px;
+                    text-align: center;
+                    transition: color 0.2s ease-in-out;
+                    color: #29abe2;
+                    user-select: none;
+                    &.active {
+                      color: #1d76bb;
+                    }
+                    &:hover {
+                      color: #1d76bb;
+                    }
+                  }
+                }
+              }
+              .quantityControl {
+                display: inline-flex;
+                border: 1px solid #e1e1e1;
+                align-items: center;
+                padding: 10px 20px;
+                gap: 20px;
+                input {
+                  width: 15px;
+                  font-size: 15px;
+                  outline: none;
+                  border: none;
+                  &::-webkit-inner-spin-button,
+                  &::-webkit-outer-spin-button {
+                    -webkit-appearance: none;
+                  }
+                }
+                span {
+                  cursor: pointer;
+                  transition: all 0.2s ease-in-out;
+                  color: #29abe2;
+                  &:hover {
+                    color: #b4b4b4;
+                  }
+                }
+              }
+              .customNameControl {
+                border: 1px solid #29abe2;
+                margin: 30px 0;
+                border-radius: 2px;
+                padding: 11px 25px;
+                .customName {
+                  p:first-of-type {
+                    position: relative;
+                    &.active {
+                      &::after {
+                        content: "";
+                        position: absolute;
+                        left: 5px;
+                        top: 2px;
+                        border-right: 3px solid white;
+                        border-bottom: 3px solid white;
+                        height: 10px;
+                        width: 5px;
+                        -webkit-transform: rotate(45deg);
+                        -ms-transform: rotate(45deg);
+                        transform: rotate(45deg);
+                      }
+                      .checkBox {
+                        background-color: #29abe2;
+                      }
+                    }
+                    .checkBox {
+                      border-radius: 2px;
+                      height: 18px;
+                      width: 18px;
+                      background-color: #fff;
+                      border: 1px solid #29abe2;
+                      position: absolute;
+                      left: 0;
+                      top: 2px;
+                    }
+
+                    .content {
+                      margin-left: 25px;
+                      font-size: 14px;
+                      color: #29abe2;
+                    }
+                  }
+                  p {
+                    color: #848484;
+                    font-size: 12px;
+                    margin-top: 5px;
+                    line-height: 1.65;
+                  }
+                }
+              }
+              .customNameInput {
+                margin-bottom: 18px;
+                input {
+                  padding: 13px 14px;
+                  border-radius: 2px;
+                  border: 1px solid #878787;
+                  width: 100%;
+                  transition: all 0.1s ease-in-out;
+                  background: transparent;
+                  color: #29abe2;
+                  box-shadow: 0 2px 4px #e1e1e1;
+                  font-size: 18px;
+                  font-weight: 500;
+                  &:active,
+                  &:focus {
+                    border-color: #29abe2;
+                    outline: none;
+                  }
+                }
+                .gamertagInfo {
+                  color: #848484;
+                  font-size: 12px;
+                  margin-top: 5px;
+                  margin-bottom: 10px;
+                }
+                p {
+                  font-weight: 500;
+                  color: #2a2a2a;
+                  line-height: 1.65;
+                }
+              }
+              button {
+                @include primaryBtn();
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (max-width: 640px) {
+  .featured {
+    .container {
+      .row {
+        .card {
+          flex-direction: column;
+        }
+      }
+    }
+  }
+}
+
+// END FEATURED

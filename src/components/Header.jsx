@@ -22,7 +22,7 @@ import { changeIsNavActive } from "../redux/slices/mobileSlice";
 
 // TRANSLATION
 import { useTranslation } from "react-i18next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Header = () => {
   const { t, i18n } = useTranslation();
@@ -31,6 +31,10 @@ const Header = () => {
     useState(false);
 
   const { isNavActive } = useSelector(state => state.mobile);
+
+  useEffect(() => {
+    document.body.style.overflow = isNavActive ? "hidden" : "unset";
+  }, [isNavActive]);
 
   const dispatch = useDispatch();
 
