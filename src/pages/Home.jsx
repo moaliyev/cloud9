@@ -252,6 +252,13 @@ const Home = () => {
           </div>
         </div>
       </section>
+      <section className="moreInfo">
+        <div className="imageContent">
+          <p>FOR MORE INFO</p>
+          <h4 className="title">CLOUD9 X ONE PIECE PRESS RELEASE</h4>
+          <Link to="/">CLICK HERE TO READ</Link>
+        </div>
+      </section>
     </>
   );
 };

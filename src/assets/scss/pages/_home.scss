@@ -427,3 +427,81 @@
 }
 
 // END FEATURED
+
+// START INFO
+
+.moreInfo {
+  background-image: url(../../images/C9xOPWebstoreBanners1800x1200_4_1500x.webp);
+  height: 600px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+  }
+  .imageContent {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 5;
+    p {
+      color: #ffffff;
+      font-size: 18px;
+    }
+    .title {
+      letter-spacing: 2px;
+      line-height: 1;
+      color: #ffffff;
+      font-size: 36px;
+      margin: 16px 0;
+      width: 450px;
+      font-style: italic;
+      text-align: center;
+    }
+    a {
+      text-decoration: underline;
+      color: #ffffff;
+    }
+  }
+}
+
+@media (max-width: 500px) {
+  .moreInfo {
+    background-image: url(../../images/C9xOPWebstoreBanners1800x1200_4_1500x.webp);
+    height: 600px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3);
+      z-index: 1;
+    }
+    .imageContent {
+      .title {
+        width: 300px;
+      }
+    }
+  }
+}
+
+// END INFO
