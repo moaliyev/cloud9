@@ -32,7 +32,9 @@
         .features {
           display: flex;
           gap: 25px;
-          color: #29abe2;
+          a {
+            color: #29abe2;
+          }
         }
       }
       .navBar {

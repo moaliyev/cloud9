@@ -10,6 +10,7 @@ import Header from "./components/Header";
 // PAGES
 import Home from "./pages/Home";
 import { useSelector } from "react-redux";
+import Cart from "./pages/Cart";
 
 function App() {
   const { isNavActive } = useSelector(state => state.mobile);
@@ -19,6 +20,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="cart/" element={<Cart />} />
         </Routes>
       </main>
     </div>

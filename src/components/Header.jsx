@@ -62,19 +62,19 @@ const Header = () => {
                 <option value="tr">TR</option>
               </select>
             </div>
-            <div className="logo">
+            <Link to="/" className="logo">
               <img src={Logo} alt="logo" />
-            </div>
+            </Link>
             <div className="features">
-              <div className="profile">
+              <Link className="profile">
                 <FaUser />
-              </div>
-              <div className="search">
+              </Link>
+              <Link className="search">
                 <FaSearch />
-              </div>
-              <div className="cart">
+              </Link>
+              <Link to="cart/" className="cart">
                 <FaBagShopping />
-              </div>
+              </Link>
             </div>
           </div>
           <nav className={isNavActive ? "navBar active" : "navBar"}>

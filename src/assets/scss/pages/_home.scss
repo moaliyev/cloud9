@@ -289,6 +289,7 @@
               }
               .quantityControl {
                 display: inline-flex;
+                height: fit-content;
                 border: 1px solid #e1e1e1;
                 align-items: center;
                 padding: 10px 20px;
@@ -381,6 +382,15 @@
                     border-color: #29abe2;
                     outline: none;
                   }
+                  &.error {
+                    border: 1px solid red;
+                  }
+                }
+                .errorMsg {
+                  display: block;
+                  color: rgb(248, 74, 74);
+                  font-size: 12px;
+                  margin: 10px 0;
                 }
                 .gamertagInfo {
                   color: #848484;

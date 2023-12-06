@@ -14,9 +14,6 @@ import HeroThree from "../assets/images/hero-3.webp";
 import HeroFour from "../assets/images/hero-4.webp";
 import HeroFive from "../assets/images/hero-5.webp";
 
-// FEATURED IMAGE
-import FeaturedImage from "../assets/images/Blank_Front_800x.webp";
-
 // COMPONENTS
 import Products from "../components/Products";
 
@@ -27,7 +24,17 @@ import { FaPlus, FaMinus } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 
 // REACT HOOKS
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+
+// REDUCERS
+import { addToCart } from "../redux/slices/cartSlice";
+
+// AXIOS
+import axios from "axios";
+
+// TOASTER
+import toast, { Toaster } from "react-hot-toast";
 
 const Home = () => {
   const [size, setSize] = useState("XS");
@@ -35,10 +42,46 @@ const Home = () => {
   const [isSizesModalActive, setIsSizesModalActive] = useState(false);
   const [isCustomNameActive, setIsCustomNameActive] = useState(false);
   const [productCount, setProductCount] = useState(1);
+  const [customName, setCustomName] = useState("");
+  const [customNameError, setCustomNameError] = useState("");
+  const [featuredProduct, setFeaturedProduct] = useState({});
+
+  useEffect(() => {
+    const getProduct = async () => {
+      await axios
+        .get(`${process.env.REACT_APP_GET_PRODUCTS}1/`)
+        .then(res => setFeaturedProduct(res.data));
+    };
+    getProduct();
+  }, []);
+
+  const dispatch = useDispatch();
 
   const handleOnClick = e => {
     setSize(e.target.innerHTML);
   };
+
+  const notify = () => toast.success("Added to the cart");
+
+  const handleOnSubmit = e => {
+    e.preventDefault();
+    if (isCustomNameActive && !customName) {
+      setCustomNameError("Custom name cannot be empty");
+      return;
+    }
+    const newProduct = isCustomNameActive
+      ? {
+          ...featuredProduct,
+          customName,
+          productCount,
+          size,
+          price: String(Number(featuredProduct.price) + 10),
+        }
+      : { ...featuredProduct, productCount, size };
+    dispatch(addToCart(newProduct));
+    notify();
+  };
+
   return (
     <>
       <section className="hero">
@@ -100,18 +143,19 @@ const Home = () => {
             <div className="card">
               <div className="cardImage">
                 <Link to="/">
-                  <img src={FeaturedImage} alt="jersey" />
+                  <img
+                    src={`${process.env.REACT_APP_IMAGES}/${featuredProduct.productImage}`}
+                    alt={featuredProduct.name}
+                  />
                 </Link>
               </div>
               <div className="cardContent">
                 <div className="cardInfo">
-                  <Link>
-                    2023 Cloud9 Official Summer Jersey - CSGO & SSBM Edition
-                  </Link>
-                  <span className="cardPrice">$ 69</span>
+                  <Link>{featuredProduct.name}</Link>
+                  <span className="cardPrice">$ {featuredProduct.price}</span>
                 </div>
                 <div className="cardForm">
-                  <form className="form">
+                  <form className="form" onSubmit={handleOnSubmit}>
                     <div
                       className="sizeControl"
                       onClick={() =>
@@ -177,7 +221,22 @@ const Home = () => {
                     </div>
                     {isCustomNameActive && (
                       <div className="customNameInput">
-                        <input type="text" name="customName" id="customName" />
+                        <input
+                          type="text"
+                          name="customName"
+                          id="customName"
+                          className={customNameError ? "error" : ""}
+                          value={customName}
+                          onChange={e => {
+                            setCustomName(e.target.value);
+                            setCustomNameError("");
+                          }}
+                        />
+                        {customNameError ? (
+                          <span className="errorMsg">{customNameError}</span>
+                        ) : (
+                          ""
+                        )}
                         <p className="gamertagInfo">
                           Enter Gamertag. Max 16 Chars, ALL CAPS
                         </p>
@@ -185,6 +244,7 @@ const Home = () => {
                       </div>
                     )}
                     <button type="submit">ADD TO CART</button>
+                    <Toaster position="top-right" reverseOrder={false} />
                   </form>
                 </div>
               </div>
