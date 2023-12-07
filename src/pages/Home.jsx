@@ -48,9 +48,13 @@ const Home = () => {
 
   useEffect(() => {
     const getProduct = async () => {
-      await axios
-        .get(`${process.env.REACT_APP_GET_PRODUCTS}1/`)
-        .then(res => setFeaturedProduct(res.data));
+      try {
+        await axios
+          .get(`${process.env.REACT_APP_GET_PRODUCTS}1/`)
+          .then(res => setFeaturedProduct(res.data));
+      } catch (err) {
+        console.log(err);
+      }
     };
     getProduct();
   }, []);
@@ -79,6 +83,8 @@ const Home = () => {
         }
       : { ...featuredProduct, productCount, size };
     dispatch(addToCart(newProduct));
+    setCustomName("");
+    setIsCustomNameActive(false);
     notify();
   };
 
