@@ -9,7 +9,99 @@
             "pro-kit": "pro kit",  
             "collaborations": "collaborations",  
             "collections": "collections",  
-            "london-spitfire": "london spitfire"  
+            "london-spitfire": "london spitfire",
+            "dropDown": {
+                "newArrivals":"New Arrivals",
+                "allTeamwear": "All Teamwear",
+                "allTops": "All Tops",
+                "allBottoms": "All Bottoms",
+                "allFootwear": "All Footwear",
+                "allAccessories": "All Accessories",
+                "shopAll": "Shop All",
+                "insideDropDown": {
+                    "jerseys": "Jerseys",
+                    "jackets": "Jackets",
+                    "bottoms": "Bottoms",
+                    "footwear": "Footwear"
+                }
+            },
+            "subLinks": {
+                "allProducts": "All Products",
+                "yourCart": "Your Cart",
+                "account": "Account"
+            }
         }
+    },
+    "hero": {
+        "heroOne": "Legacy Wristband",
+        "heroTwo": "Summer Jersey",
+        "heroThree": "Worlds Collection",
+        "heroFour": "Legacy Jersey",
+        "heroFive": "Core Collection"
+    },
+    "featured": {
+        "title": "FEATURED PRODUCT",
+        "label": "Add Custom Name (ALL CAPS) ($ 10.00)",
+        "info": "Choose the custom name on the back. Nonrefundable.",
+        "gamertag": "Enter Gamertag. ALL CAPS",
+        "addToCart": "ADD TO CART",
+        "totalExtras": "Total Extras",
+        "success": "Added to the cart"
+    },
+    "moreInfo": {
+        "info": "FOR MORE INFO",
+        "title": "PRESS RELEASE",
+        "link": "CLICK HERE TO READ"
+    },
+    "footer": {
+        "products": {
+            "tops": "Tops",
+            "outwear": "Outwear",
+            "footwear": "Footwear",
+            "accessories": "Accessories",
+            "newArrivals": "New Arrivals"
+        },
+        "collections": {
+            "proKit": "2023 Pro kit",
+            "coreCollection": "Cloud9 Core Collection",
+            "blaber": "Blaber Capsule",
+            "shopAll": "Shop All"
+        },
+        "about": {
+            "returns": "Returns",
+            "FAQ": "FAQ",
+            "euStore": "Cloud9 EU Store",
+            "londonSpitfire": "London Spitfire Store"
+        },
+        "discount": {
+            "title": "10% DISCOUNT - JOIN THE C9FAM",
+            "info": "Exclusive deals, new product drops and 10% off your next order.",
+            "email": "Enter your email address",
+            "subscribe": "subscribe"
+        },
+        "error": "Invalid email!",
+        "success": "Your response was received!"
+    },
+    "search": {
+        "title": "Search"
+    },
+    "cart": {
+        "title": "Cart",
+        "info": "Your cart is empty",
+        "button": "SHOP OUR PRODUCTS",
+        "product": "Prodcut",
+        "quantity": "Quantity",
+        "total": "Total",
+        "checkout": "CHECKOUT",
+        "customName": "Custom name included",
+        "success": "Your payment was successfull."
+    },
+    "profile": {
+        "welcome": "Welcome",
+        "name": "Name",
+        "surname": "Surname",
+        "email": "Email",
+        "changePassword": "Change Password",
+        "logOut": "Log Out"
     }
 }

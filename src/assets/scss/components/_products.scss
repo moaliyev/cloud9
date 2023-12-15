@@ -1,0 +1,49 @@
+.cardBox {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .card {
+    flex: 0 0 20%;
+    display: flex;
+    flex-direction: column;
+    max-width: 880px;
+    gap: 10px;
+    .cardImg {
+      max-height: 200px;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+    .cardInfo {
+      width: 100%;
+      height: 100%;
+      line-height: 1.65;
+      font-size: 14px;
+      letter-spacing: 1.05px;
+      .cardPrice {
+        color: #1d76bb;
+        font-weight: 600;
+        font-size: 16px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .cardBox {
+    .card {
+      flex: 0 0 45%;
+    }
+  }
+}
+
+@media (max-width: 472px) {
+  .cardBox {
+    .card {
+      flex: 0 0 100%;
+    }
+  }
+}

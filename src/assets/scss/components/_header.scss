@@ -1,17 +1,25 @@
 .header {
-  height: 100%;
+  height: 170px;
+  position: fixed;
+  background-color: #fff;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0 -1px #e1e1e1 inset;
   .info {
     text-align: center;
     padding: 13px 5px;
     font-size: 13px;
+    max-height: min-content;
     background-color: #2fabe2;
     color: #fff;
   }
   .container {
+    height: fit-content;
     .row {
       flex-direction: column;
       padding: 20px 0;
       gap: 20px;
+      height: fit-content;
       .topSide {
         .mobileMenu {
           display: none;
@@ -39,7 +47,7 @@
       }
       .navBar {
         width: 100%;
-        z-index: 999;
+        z-index: 9999999999;
         svg {
           display: none;
         }
@@ -163,6 +171,7 @@
 
 @media (max-width: 1156px) {
   .header {
+    height: 122px;
     .container {
       .row {
         .topSide {
@@ -186,6 +195,7 @@
           height: 100vh;
           width: 300px;
           padding: 30px 15px;
+          z-index: 9999999999;
           .subLinks {
             margin-top: 40px;
             height: 100%;
@@ -349,6 +359,17 @@
   }
 }
 
+@media (max-width: 660px) {
+  .header {
+    .info {
+      text-overflow: ellipsis;
+      max-width: 100vw;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+}
+
 @media (max-width: 640px) {
   .header {
     .container {
@@ -356,6 +377,25 @@
         .navBar {
           left: -90%;
           width: 90%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 400px) {
+  .header {
+    .container {
+      .row {
+        .topSide {
+          .features {
+            .profile {
+              display: none;
+            }
+            .cart {
+              display: none;
+            }
+          }
         }
       }
     }

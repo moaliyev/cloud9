@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 
+// ICONS
 import {
   FaTwitter,
   FaFacebookF,
@@ -10,10 +11,43 @@ import {
   FaYoutube,
   FaLinkedin,
 } from "react-icons/fa6";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+
+import toast, { Toaster } from "react-hot-toast";
 
 const Footer = () => {
+  const { t } = useTranslation();
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    setError(false);
+  }, [navigate]);
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState(false);
+  const handleSubmit = e => {
+    e.preventDefault();
+    if (
+      String(email)
+        .toLowerCase()
+        .match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        )
+    ) {
+      toast.success(t("footer.success"));
+      setEmail("");
+      setError(false);
+      return;
+    }
+    toast.error(t("footer.error"));
+    setError(true);
+    return;
+  };
+
   return (
     <footer className="footer">
+      <Toaster position="top-right" reverseOrder={false} />
       <div className="container">
         <div className="row">
           <div className="footerLinks">
@@ -21,19 +55,19 @@ const Footer = () => {
               <h6>Products</h6>
               <ul className="footerLinkList">
                 <li>
-                  <Link>Tops</Link>
+                  <Link to="/">{t("footer.products.tops")}</Link>
                 </li>
                 <li>
-                  <Link>Outwear</Link>
+                  <Link to="/">{t("footer.products.outwear")}</Link>
                 </li>
                 <li>
-                  <Link>Footwear</Link>
+                  <Link to="/">{t("footer.products.footwear")}</Link>
                 </li>
                 <li>
-                  <Link>Accessories</Link>
+                  <Link to="/">{t("footer.products.accessories")}</Link>
                 </li>
                 <li>
-                  <Link>New Arrivals</Link>
+                  <Link to="/">{t("footer.products.newArrivals")}</Link>
                 </li>
               </ul>
             </div>
@@ -41,19 +75,19 @@ const Footer = () => {
               <h6>Collections</h6>
               <ul className="footerLinkList">
                 <li>
-                  <Link>C9 x ONE PIECE</Link>
+                  <Link to="/">C9 x ONE PIECE</Link>
                 </li>
                 <li>
-                  <Link>2023 Pro kit</Link>
+                  <Link to="/">{t("footer.collections.proKit")}</Link>
                 </li>
                 <li>
-                  <Link>Cloud9 Core Collection</Link>
+                  <Link to="/">{t("footer.collections.coreCollection")}</Link>
                 </li>
                 <li>
-                  <Link>Blaber Capsule</Link>
+                  <Link to="/">{t("footer.collections.blaber")}</Link>
                 </li>
                 <li>
-                  <Link>Shop All</Link>
+                  <Link to="/">{t("footer.collections.shopAll")}</Link>
                 </li>
               </ul>
             </div>
@@ -61,32 +95,40 @@ const Footer = () => {
               <h6>About</h6>
               <ul className="footerLinkList">
                 <li>
-                  <Link>CLOUD9.GG</Link>
+                  <Link to="/">CLOUD9.GG</Link>
                 </li>
                 <li>
-                  <Link>Returns</Link>
+                  <Link to="/">{t("footer.about.returns")}</Link>
                 </li>
                 <li>
-                  <Link>FAQ</Link>
+                  <Link to="/">{t("footer.about.FAQ")}</Link>
                 </li>
                 <li>
-                  <Link>Cloud9 EU Store</Link>
+                  <Link to="/">{t("footer.about.euStore")}</Link>
                 </li>
                 <li>
-                  <Link>London Spitfire Store</Link>
+                  <Link to="/">{t("footer.about.londonSpitfire")}</Link>
                 </li>
               </ul>
             </div>
             <div className="discount">
-              <h6>10% Discount - Join the C9fam</h6>
+              <h6>{t("footer.discount.title")}</h6>
               <div className="formControl">
-                <p>
-                  Exclusive deals, new product drops and 10% off your next
-                  order.
-                </p>
-                <form>
-                  <input type="email" placeholder="Enter your email address" />
-                  <button type="submit">SUBSCRIBE</button>
+                <p>{t("footer.discount.info")}</p>
+                <form onSubmit={handleSubmit}>
+                  <input
+                    type="text"
+                    className={`${error ? "error" : ""}`}
+                    value={email}
+                    onChange={e => {
+                      setEmail(e.target.value);
+                      setError(false);
+                    }}
+                    placeholder={t("footer.discount.email")}
+                  />
+                  <button type="submit">
+                    {t("footer.discount.subscribe")}
+                  </button>
                 </form>
               </div>
             </div>
@@ -99,42 +141,42 @@ const Footer = () => {
             <p>#C9Fam</p>
             <ul className="socialMediaLinksList">
               <li>
-                <Link>
+                <Link to="https://twitter.com/Cloud9">
                   <FaTwitter />
                 </Link>
               </li>
               <li>
-                <Link>
+                <Link to="https://www.facebook.com/cloud9/">
                   <FaFacebookF />
                 </Link>
               </li>
               <li>
-                <Link>
+                <Link to="https://www.instagram.com/cloud9gg">
                   <FaInstagram />
                 </Link>
               </li>
               <li>
-                <Link>
+                <Link to="https://discord.com/invite/cloud9">
                   <FaDiscord />
                 </Link>
               </li>
               <li>
-                <Link>
+                <Link to="https://www.twitch.tv/team/cloud9">
                   <FaTwitch />
                 </Link>
               </li>
               <li>
-                <Link>
+                <Link to="https://www.reddit.com/r/Cloud9/">
                   <FaReddit />
                 </Link>
               </li>
               <li>
-                <Link>
+                <Link to="https://www.youtube.com/channel/UCEkorHXUNJ5tpcH0VE77_fA">
                   <FaYoutube />
                 </Link>
               </li>
               <li>
-                <Link>
+                <Link to="https://www.linkedin.com/company/cloud9-esports/">
                   <FaLinkedin />
                 </Link>
               </li>

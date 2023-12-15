@@ -8,8 +8,8 @@ const mobileSlice = createSlice({
   name: "mobile",
   initialState,
   reducers: {
-    changeIsNavActive: state => {
-      state.isNavActive = !state.isNavActive;
+    changeIsNavActive: (state, action) => {
+      state.isNavActive = action.payload;
     },
   },
 });

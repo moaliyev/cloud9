@@ -70,6 +70,10 @@
                 &:focus {
                   border-color: #29abe2;
                 }
+                &.error {
+                  border-color: red;
+                  box-shadow: 0 2px 4px red;
+                }
               }
               button {
                 display: block;

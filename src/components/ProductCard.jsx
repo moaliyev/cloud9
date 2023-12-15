@@ -4,7 +4,7 @@ const ProductCard = ({ id, name, price, productImage }) => {
   return (
     <div className="card">
       <div className="cardImg">
-        <Link to="/">
+        <Link to={`/products/${id}`}>
           <img
             src={`${process.env.REACT_APP_IMAGES}/${productImage}`}
             alt={name}

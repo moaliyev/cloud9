@@ -20,6 +20,15 @@
   height: 100%;
   display: flex;
 }
+main {
+  padding-top: 170px;
+}
+
+@media (max-width: 1156px) {
+  main {
+    padding-top: 122px;
+  }
+}
 
 @media (max-width: 1156px) {
   .primaryContainer {
@@ -30,20 +39,32 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 100vh;
+      height: 100%;
       background-color: rgba(0, 0, 0, 0);
       z-index: -1;
       transition: all 0.3s ease;
     }
     &.darkFilter {
+      .header {
+        &::after {
+          z-index: 99;
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.3);
+        }
+      }
       &::after {
-        z-index: 1;
+        z-index: 99;
         content: "";
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
-        height: 100vh;
+        height: 100%;
         background-color: rgba(0, 0, 0, 0.3);
       }
     }

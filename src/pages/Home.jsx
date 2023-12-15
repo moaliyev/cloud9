@@ -17,76 +17,14 @@ import HeroFive from "../assets/images/hero-5.webp";
 // COMPONENTS
 import Products from "../components/Products";
 
-// ICONS
-import { FaPlus, FaMinus } from "react-icons/fa6";
+// TRANSLATION
+import { useTranslation } from "react-i18next";
 
-// REACT-ROUTER
+import FeaturedCard from "../components/FeaturedCard";
 import { Link } from "react-router-dom";
 
-// REACT HOOKS
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-
-// REDUCERS
-import { addToCart } from "../redux/slices/cartSlice";
-
-// AXIOS
-import axios from "axios";
-
-// TOASTER
-import toast, { Toaster } from "react-hot-toast";
-
 const Home = () => {
-  const [size, setSize] = useState("XS");
-  const [sizes, setSizes] = useState(["XS", "S", "M", "L"]);
-  const [isSizesModalActive, setIsSizesModalActive] = useState(false);
-  const [isCustomNameActive, setIsCustomNameActive] = useState(false);
-  const [productCount, setProductCount] = useState(1);
-  const [customName, setCustomName] = useState("");
-  const [customNameError, setCustomNameError] = useState("");
-  const [featuredProduct, setFeaturedProduct] = useState({});
-
-  useEffect(() => {
-    const getProduct = async () => {
-      try {
-        await axios
-          .get(`${process.env.REACT_APP_GET_PRODUCTS}1/`)
-          .then(res => setFeaturedProduct(res.data));
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getProduct();
-  }, []);
-
-  const dispatch = useDispatch();
-
-  const handleOnClick = e => {
-    setSize(e.target.innerHTML);
-  };
-
-  const notify = () => toast.success("Added to the cart");
-
-  const handleOnSubmit = e => {
-    e.preventDefault();
-    if (isCustomNameActive && !customName) {
-      setCustomNameError("Custom name cannot be empty");
-      return;
-    }
-    const newProduct = isCustomNameActive
-      ? {
-          ...featuredProduct,
-          customName,
-          productCount,
-          size,
-          price: String(Number(featuredProduct.price) + 10),
-        }
-      : { ...featuredProduct, productCount, size };
-    dispatch(addToCart(newProduct));
-    setCustomName("");
-    setIsCustomNameActive(false);
-    notify();
-  };
+  const { t } = useTranslation();
 
   return (
     <>
@@ -101,35 +39,35 @@ const Home = () => {
             <img src={HeroOne} alt="hero" />
             <p className="sliderText">
               <span>Cloud9 </span>
-              <span>Legacy Wristband</span>
+              <span>{t("hero.heroOne")}</span>
             </p>
           </SwiperSlide>
           <SwiperSlide>
             <img src={HeroTwo} alt="hero" />
             <p className="sliderText">
               <span>Cloud9</span>
-              <span>Summer Jersey</span>
+              <span>{t("hero.heroTwo")}</span>
             </p>
           </SwiperSlide>
           <SwiperSlide>
             <img src={HeroThree} alt="hero" />
             <p className="sliderText">
               <span>2023</span>
-              <span>Worlds Collection</span>
+              <span>{t("hero.heroThree")}</span>
             </p>
           </SwiperSlide>
           <SwiperSlide>
             <img src={HeroFour} alt="hero" />
             <p className="sliderText">
               <span>Cloud9 2023</span>
-              <span>Legacy Jersey</span>
+              <span>{t("hero.heroFour")}</span>
             </p>
           </SwiperSlide>
           <SwiperSlide>
             <img src={HeroFive} alt="hero" />
             <p className="sliderText">
               <span>Cloud9</span>
-              <span>Core Collection</span>
+              <span>{t("hero.heroFive")}</span>
             </p>
           </SwiperSlide>
         </Swiper>
@@ -145,124 +83,16 @@ const Home = () => {
       <section className="featured">
         <div className="container">
           <div className="row">
-            <h2 className="title">FEATURED PRODUCT</h2>
-            <div className="card">
-              <div className="cardImage">
-                <Link to="/">
-                  <img
-                    src={`${process.env.REACT_APP_IMAGES}/${featuredProduct.productImage}`}
-                    alt={featuredProduct.name}
-                  />
-                </Link>
-              </div>
-              <div className="cardContent">
-                <div className="cardInfo">
-                  <Link>{featuredProduct.name}</Link>
-                  <span className="cardPrice">$ {featuredProduct.price}</span>
-                </div>
-                <div className="cardForm">
-                  <form className="form" onSubmit={handleOnSubmit}>
-                    <div
-                      className="sizeControl"
-                      onClick={() =>
-                        setIsSizesModalActive(!isSizesModalActive)
-                      }>
-                      <p htmlFor="size">
-                        Size: <span className="sizeInputValue">{size}</span>
-                      </p>
-                      <ul
-                        className={`selectOption${
-                          isSizesModalActive ? " active" : ""
-                        }`}>
-                        {sizes.map((item, index) => (
-                          <li
-                            key={index}
-                            onClick={handleOnClick}
-                            className={`${item === size && "active"}`}>
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div className="quantityControl">
-                      <span
-                        className="decrement"
-                        onClick={() =>
-                          setProductCount(
-                            productCount - 1 < 1 ? 1 : productCount - 1
-                          )
-                        }>
-                        <FaMinus />
-                      </span>
-                      <input
-                        type="number"
-                        min={1}
-                        readOnly
-                        name="quantity"
-                        value={productCount}
-                        id="quantity"
-                      />
-                      <span
-                        className="increment"
-                        onClick={() => setProductCount(productCount + 1)}>
-                        <FaPlus />
-                      </span>
-                    </div>
-                    <div className="customNameControl">
-                      <div className="customName">
-                        <p className={`${isCustomNameActive ? "active" : ""}`}>
-                          <span
-                            className="checkBox"
-                            onClick={() =>
-                              setIsCustomNameActive(!isCustomNameActive)
-                            }></span>
-                          <span className="content">
-                            Add Custom Name (ALL CAPS) ($ 10.00)
-                          </span>
-                        </p>
-                        <p>
-                          Choose the custom name on the back. Nonrefundable.
-                        </p>
-                      </div>
-                    </div>
-                    {isCustomNameActive && (
-                      <div className="customNameInput">
-                        <input
-                          type="text"
-                          name="customName"
-                          id="customName"
-                          className={customNameError ? "error" : ""}
-                          value={customName}
-                          onChange={e => {
-                            setCustomName(e.target.value);
-                            setCustomNameError("");
-                          }}
-                        />
-                        {customNameError ? (
-                          <span className="errorMsg">{customNameError}</span>
-                        ) : (
-                          ""
-                        )}
-                        <p className="gamertagInfo">
-                          Enter Gamertag. Max 16 Chars, ALL CAPS
-                        </p>
-                        <p>Total Extras: $ 10.00</p>
-                      </div>
-                    )}
-                    <button type="submit">ADD TO CART</button>
-                    <Toaster position="top-right" reverseOrder={false} />
-                  </form>
-                </div>
-              </div>
-            </div>
+            <h2 className="title">{t("featured.title")}</h2>
+            <FeaturedCard productId={1} />
           </div>
         </div>
       </section>
       <section className="moreInfo">
         <div className="imageContent">
-          <p>FOR MORE INFO</p>
-          <h4 className="title">CLOUD9 X ONE PIECE PRESS RELEASE</h4>
-          <Link to="/">CLICK HERE TO READ</Link>
+          <p>{t("moreInfo.info")}</p>
+          <h4 className="title">CLOUD9 X ONE PIECE {t("moreInfo.title")}</h4>
+          <Link to="/">{t("moreInfo.link")}</Link>
         </div>
       </section>
     </>

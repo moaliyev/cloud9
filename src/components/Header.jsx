@@ -14,7 +14,7 @@ import {
 import { FaSearch } from "react-icons/fa";
 
 // REACT-ROUTER
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
@@ -22,7 +22,9 @@ import { changeIsNavActive } from "../redux/slices/mobileSlice";
 
 // TRANSLATION
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
+
+// REACT
+import { useEffect, useState, useRef } from "react";
 
 const Header = () => {
   const { t, i18n } = useTranslation();
@@ -30,13 +32,35 @@ const Header = () => {
   const [isDropDownActiveTeamWear, setIsDropDownActiveTeamWear] =
     useState(false);
 
+  const dispatch = useDispatch();
+  const mobileMenu = useRef();
+  const navigate = useNavigate();
+
+  const { userIn } = useSelector(state => state.user);
+
   const { isNavActive } = useSelector(state => state.mobile);
+
+  useEffect(() => {
+    if (isNavActive) {
+      const handler = e => {
+        if (!mobileMenu.current.contains(e.target)) {
+          dispatch(changeIsNavActive(false));
+        }
+      };
+      document.addEventListener("mousedown", handler);
+
+      return () => document.removeEventListener("mousedown", handler);
+    }
+    return;
+  }, [isNavActive, dispatch]);
 
   useEffect(() => {
     document.body.style.overflow = isNavActive ? "hidden" : "unset";
   }, [isNavActive]);
 
-  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(changeIsNavActive(false));
+  }, [navigate]);
 
   return (
     <header className="header">
@@ -47,7 +71,8 @@ const Header = () => {
             {/* MOBILE MENU */}
             <div
               className="mobileMenu"
-              onClick={() => dispatch(changeIsNavActive())}>
+              ref={mobileMenu}
+              onClick={() => dispatch(changeIsNavActive(!isNavActive))}>
               <FaBars />
             </div>
             {/* MOBILE MENU */}
@@ -66,10 +91,10 @@ const Header = () => {
               <img src={Logo} alt="logo" />
             </Link>
             <div className="features">
-              <Link className="profile">
+              <Link to={userIn ? "/profile" : "/register"} className="profile">
                 <FaUser />
               </Link>
-              <Link className="search">
+              <Link className="search" to="/search">
                 <FaSearch />
               </Link>
               <Link to="cart/" className="cart">
@@ -77,8 +102,10 @@ const Header = () => {
               </Link>
             </div>
           </div>
-          <nav className={isNavActive ? "navBar active" : "navBar"}>
-            <FaX onClick={() => dispatch(changeIsNavActive())} />
+          <nav
+            className={isNavActive ? "navBar active" : "navBar"}
+            ref={mobileMenu}>
+            <FaX onClick={() => dispatch(changeIsNavActive(false))} />
             <ul className="navList">
               <li
                 className={`navItem longer${
@@ -96,11 +123,13 @@ const Header = () => {
                     {t("header.navbar.apparel")} <FaPlus /> <FaMinus />
                   </div>
                 ) : (
-                  <Link>{t("header.navbar.apparel")}</Link>
+                  <Link to="/">{t("header.navbar.apparel")}</Link>
                 )}
                 <ul className="dropDown">
                   <li className="dropDownItem">
-                    <Link>New Arrivals</Link>
+                    <Link to="/">
+                      {t("header.navbar.dropDown.newArrivals")}
+                    </Link>
                   </li>
                   <li
                     className={`dropDownItem${
@@ -111,48 +140,62 @@ const Header = () => {
                         onClick={() =>
                           setIsDropDownActiveTeamWear(!isDropDownActiveTeamWear)
                         }>
-                        All Teamwear
+                        {t("header.navbar.dropDown.allTeamwear")}
                         <FaPlus />
                         <FaMinus />
                       </div>
                     ) : (
-                      <Link>
-                        All Teamwear
+                      <Link to="/">
+                        {t("header.navbar.dropDown.allTeamwear")}
                         <FaAngleRight />
                       </Link>
                     )}
                     <ul className="insideDropDown">
                       <li className="insideDropDownItem">
-                        <Link>2023 Pro Kit</Link>
+                        <Link to="/">2023 Pro Kit</Link>
                       </li>
                       <li className="insideDropDownItem">
-                        <Link>Jerseys</Link>
+                        <Link to="/">
+                          {t("header.navbar.dropDown.insideDropDown.jerseys")}
+                        </Link>
                       </li>
                       <li className="insideDropDownItem">
-                        <Link>Jackets</Link>
+                        <Link to="/">
+                          {t("header.navbar.dropDown.insideDropDown.jackets")}
+                        </Link>
                       </li>
                       <li className="insideDropDownItem">
-                        <Link>Bottoms</Link>
+                        <Link to="/">
+                          {t("header.navbar.dropDown.insideDropDown.bottoms")}
+                        </Link>
                       </li>
                       <li className="insideDropDownItem">
-                        <Link>Footwear</Link>
+                        <Link to="/">
+                          {t("header.navbar.dropDown.insideDropDown.footwear")}
+                        </Link>
                       </li>
                     </ul>
                   </li>
                   <li className="dropDownItem">
-                    <Link>All Tops</Link>
+                    <Link to="/">{t("header.navbar.dropDown.allTops")}</Link>
                   </li>
                   <li className="dropDownItem">
-                    <Link>All Bottoms</Link>
+                    <Link to="/">{t("header.navbar.dropDown.allBottoms")}</Link>
                   </li>
                   <li className="dropDownItem">
-                    <Link>All Footwear</Link>
+                    <Link to="/">
+                      {t("header.navbar.dropDown.allFootwear")}
+                    </Link>
                   </li>
                   <li className="dropDownItem">
-                    <Link>All Accessories</Link>
+                    <Link to="/">
+                      {t("header.navbar.dropDown.allAccessories")}
+                    </Link>
                   </li>
                   <li className="dropDownItem">
-                    <Link>Shop All</Link>
+                    <Link to="/all-products">
+                      {t("header.navbar.dropDown.shopAll")}
+                    </Link>
                   </li>
                 </ul>
               </li>
@@ -176,13 +219,17 @@ const Header = () => {
               </li>
               <div className="subLinks">
                 <li className="subLinkItem">
-                  <Link>New Arrivals</Link>
+                  <Link to="/all-products">
+                    {t("header.navbar.subLinks.allProducts")}
+                  </Link>
                 </li>
                 <li className="subLinkItem">
-                  <Link>All Products</Link>
+                  <Link to="/cart">{t("header.navbar.subLinks.yourCart")}</Link>
                 </li>
                 <li className="subLinkItem">
-                  <Link>Account</Link>
+                  <Link to="/profile">
+                    {t("header.navbar.subLinks.account")}
+                  </Link>
                 </li>
               </div>
             </ul>

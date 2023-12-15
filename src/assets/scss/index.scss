@@ -4,7 +4,15 @@
 // Components
 @import "./components/header";
 @import "./components/footer";
+@import "./components/card";
+@import "./components/products";
 
 // Pages
 @import "./pages/home";
 @import "./pages/cart";
+@import "./pages/login";
+@import "./pages/profile";
+@import "./pages/forgotPassword";
+@import "./pages/allProducts";
+@import "./pages/productDetails";
+@import "./pages/search";

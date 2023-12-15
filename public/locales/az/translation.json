@@ -1,15 +1,107 @@
 {
     "header": {
         "language": "Dil",
-        "title": "Hər 2023 Legacy Qolbağı alışı ilə eksklüziv 2023 LCS Çempionluq afişi qazanın!",
+        "title": "Hər 2023 Legacy Əlgötürmə qolbağı alışı ilə eksklüziv 2023 LCS Çempionluq posterini qazanın!",
         "navbar": {
             "apparel": "geyim",
             "worlds-2023": "dünya 2023",
-            "summer-2023": "yay 2023",  
-            "pro-kit": "pro kit",  
-            "collaborations": "işbirliyi",  
-            "collections": "kolleksiyalar",  
-            "london-spitfire": "london spitfire"  
+            "summer-2023": "yaz 2023",
+            "pro-kit": "pro kit",
+            "collaborations": "işbirliyi",
+            "collections": "kolleksiyalar",
+            "london-spitfire": "london spitfire",
+            "dropDown": {
+                "newArrivals": "Yeni Gəlişlər",
+                "allTeamwear": "Bütün Komandagiyimləri",
+                "allTops": "Bütün Üst Geyimlər",
+                "allBottoms": "Bütün Altdan Geyimlər",
+                "allFootwear": "Bütün Ayaqqabılar",
+                "allAccessories": "Bütün Aksesuarlar",
+                "shopAll": "Hamısını Al",
+                "insideDropDown": {
+                    "jerseys": "Formalar",
+                    "jackets": "Ceketlər",
+                    "bottoms": "Altdan Geyimlər",
+                    "footwear": "Ayaqqabılar"
+                }
+            },
+            "subLinks": {
+                "allProducts": "Bütün Məhsullar",
+                "yourCart": "Sizin Səbətiniz",
+                "account": "Hesab"
+            }
         }
+    },
+    "hero": {
+        "heroOne": "Legacy Qolbağı",
+        "heroTwo": "Yaz Jerseyi",
+        "heroThree": "Dünya Kolleksiyası",
+        "heroFour": "Legacy Jerseyi",
+        "heroFive": "Əsas Kolleksiya"
+    },
+    "featured": {
+        "title": "XÜSUSİ MƏHSUL",
+        "label": "Adı öz əlavə edin (HAMISI BÖYÜK HƏRFLƏR) (10,00 $)",
+        "info": "Arxada öz adını seçin. Geri qaytarılmaz.",
+        "gamertag": "Gamertag daxil edin. HAMISI BÖYÜK HƏRFLƏR",
+        "addToCart": "SƏBƏTƏ ƏLAVƏ EDİN",
+        "totalExtras": "Ümumi Əlavələr",
+        "success": "Səbətə əlavə edildi"
+    },
+    "moreInfo": {
+        "info": "DAHA ÇOX MƏLUMAT ÜÇÜN",
+        "title": "BASIN BİLDİRİSİ",
+        "link": "OXUMAQ ÜÇÜN BURAYA TIKLAYIN"
+    },
+    "footer": {
+        "products": {
+            "tops": "Üst Geyimlər",
+            "outwear": "Üst Geyimlər",
+            "footwear": "Ayaqqabılar",
+            "accessories": "Aksesuarlar",
+            "newArrivals": "Yeni Gəlişlər"
+        },
+        "collections": {
+            "proKit": "2023 Pro kit",
+            "coreCollection": "Cloud9 Əsas Kolleksiyası",
+            "blaber": "Blaber Kapsulu",
+            "shopAll": "Hamısını Al"
+        },
+        "about": {
+            "returns": "Qaytarış",
+            "FAQ": "FAQ",
+            "euStore": "Cloud9 Aİ Mağaza",
+            "londonSpitfire": "London Spitfire Mağaza"
+        },
+        "discount": {
+            "title": "10% ENDİRİM - C9FAM-ə QOŞULUN",
+            "info": "Eksklüziv təkliflər, yeni məhsul düşmələri və növbəti sifarişinizdə 10% endirim.",
+            "email": "E-poçt ünvanınızı daxil edin",
+            "subscribe": "abunə olun"
+        },
+        "error": "Yanlış e-poçt!",
+        "success": "Cavabınız qəbul edildi!"
+    },
+    "search": {
+        "title": "Axtarış"
+    },
+    "cart": {
+        "title": "Səbət",
+        "info": "Səbətiniz boşdur",
+        "button": "MƏHSULLARIMIZI ALIN",
+        "product": "Məhsul",
+        "quantity": "Miqdar",
+        "total": "Ümumi",
+        "checkout": "ÖDƏNİŞİ TAMAMLA",
+        "customName": "Öz adı daxildir",
+        "success": "Ödəməniz uğurla həyata keçirildi."
+    },
+    "profile": {
+        "welcome": "Xoş gəldiniz",
+        "name": "Ad",
+        "surname": "Soyad",
+        "email": "E-poçt",
+        "changePassword": "Şifrəni dəyişdir",
+        "logOut": "Çıxış et"
     }
 }

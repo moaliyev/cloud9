@@ -1,0 +1,14 @@
+@import "../mixins";
+
+.allProducts {
+  padding: 60px 0;
+  .container {
+    .row {
+      flex-direction: column;
+      align-items: center;
+      .title {
+        @include title();
+      }
+    }
+  }
+}
