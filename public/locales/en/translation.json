@@ -54,6 +54,9 @@
         "link": "CLICK HERE TO READ"
     },
     "footer": {
+        "productsHeader": "PRODUCTS",
+        "collectionsHeader": "COLLECTIONS",
+        "aboutHeader": "ABOUT",
         "products": {
             "tops": "Tops",
             "outwear": "Outwear",

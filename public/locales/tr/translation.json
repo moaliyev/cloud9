@@ -54,6 +54,9 @@
         "link": "OKUMAK İÇİN BURAYA TIKLAYIN"
     },
     "footer": {
+        "productsHeader": "ÜRÜNLER",
+        "collectionsHeader": "KOLEKSİYONLAR",
+        "aboutHeader": "HAKKIMIZDA",
         "products": {
             "tops": "Üst Giyimler",
             "outwear": "Dış Giyim",

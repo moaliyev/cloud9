@@ -54,6 +54,9 @@
         "link": "OXUMAQ ÜÇÜN BURAYA TIKLAYIN"
     },
     "footer": {
+        "productsHeader": "MƏHSULLAR",
+        "collectionsHeader": "KOLLEKSİYALAR",
+        "aboutHeader": "HAQQIMIZDA",
         "products": {
             "tops": "Üst Geyimlər",
             "outwear": "Üst Geyimlər",

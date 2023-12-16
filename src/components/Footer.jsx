@@ -52,7 +52,7 @@ const Footer = () => {
         <div className="row">
           <div className="footerLinks">
             <div className="linkListContainer">
-              <h6>Products</h6>
+              <h6>{t("footer.productsHeader")}</h6>
               <ul className="footerLinkList">
                 <li>
                   <Link to="/">{t("footer.products.tops")}</Link>
@@ -72,7 +72,7 @@ const Footer = () => {
               </ul>
             </div>
             <div className="linkListContainer">
-              <h6>Collections</h6>
+              <h6>{t("footer.collectionsHeader")}</h6>
               <ul className="footerLinkList">
                 <li>
                   <Link to="/">C9 x ONE PIECE</Link>
@@ -92,7 +92,7 @@ const Footer = () => {
               </ul>
             </div>
             <div className="linkListContainer">
-              <h6>About</h6>
+              <h6>{t("footer.aboutHeader")}</h6>
               <ul className="footerLinkList">
                 <li>
                   <Link to="/">CLOUD9.GG</Link>
